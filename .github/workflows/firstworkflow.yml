@@ -12,5 +12,5 @@ jobs:
     - name: 'Checkout GitHub Action'
       uses: actions/checkout@v4
 
-    - name: Read README
+    - name: Read-README
       run : cat README.md
