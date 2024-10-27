@@ -6,7 +6,7 @@ on:
     branches: ["main"]
 
 jobs:
-  read-README:
+  Upload-Artifact:
     runs-on: ubuntu-latest # For Linux, use ubuntu-latest
     steps:
     - name: 'Checkout GitHub Action'
@@ -23,3 +23,15 @@ jobs:
       with:
          name: my-artifact
          path: Rahul.txt # or path/to/artifact
+  Cat-File:
+    runs-on: ubuntu-latest
+    steps: 
+    - name: Download Artifact
+      uses: actions/download-artifact@v4
+      with:
+         name: my-artifact
+
+    - name: Read File
+      run: cat Rahul.txt
+       
+    
