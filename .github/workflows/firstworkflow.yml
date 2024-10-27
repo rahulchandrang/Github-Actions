@@ -14,3 +14,12 @@ jobs:
 
     - name: Read-README
       run : cat README.md
+
+    - name: Echo-to-file
+      run: echo "My name is Rahul" > Rahul.txt
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+         name: my-artifact
+         path: Rahul.txt # or path/to/artifact
