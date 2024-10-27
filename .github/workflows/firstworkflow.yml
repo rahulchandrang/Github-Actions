@@ -24,6 +24,7 @@ jobs:
          name: my-artifact
          path: Rahul.txt # or path/to/artifact
   Cat-File:
+    needs: Upload-Artifact
     runs-on: ubuntu-latest
     steps: 
     - name: Download Artifact
