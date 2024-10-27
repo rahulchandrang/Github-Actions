@@ -6,7 +6,7 @@ on:
     branches: ["main"]
 
 jobs:
-  read README:
+  read-README:
     runs-on: ubuntu-latest # For Linux, use ubuntu-latest
     steps:
     - name: 'Checkout GitHub Action'
