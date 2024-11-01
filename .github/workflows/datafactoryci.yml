@@ -54,3 +54,35 @@ jobs:
       - name: Validate ARM Template
         run: |
          npm run build validate ${{github.workspace}}/ /subscriptions/6b972f7e-adb4-42c8-aa18-4bfcd1aec15f/resourceGroups/RAHUL-ADF-DEV/providers/Microsoft.DataFactory/factories/rahuladfdevadf
+
+  Build-ARM:
+    name: Build ARM Teamplate
+    runs-on: ubuntu-latest
+    needs: Validate-ARM
+    environment: dev
+
+    steps:
+      - name: CheckOut Repository
+        uses: actions/checkout@v4
+
+# Installs Node and the npm packages saved in your package.json file in the build
+      - name: Install Node.JS ${{env.NODE_VERSION}}
+        uses: actions/setup-node@v4
+        with:
+         node-version: ${{env.NODE_VERSION}}
+      
+      - name: Install npm packages
+        run: npm install
+        working-directory: '${{github.workspace}}/'
+        
+      - name: Export ARM Templates
+        working-directory: '${{github.workspace}}/'
+        run: | 
+         npm run build export ${{github.workspace}}/ /subscriptions/6b972f7e-adb4-42c8-aa18-4bfcd1aec15f/resourceGroups/RAHUL-ADF-DEV/providers/Microsoft.DataFactory/factories/rahuladfdevadf "ExportedArmTemplate"
+      
+      - name: Publish ARM Template Artifact
+        uses: actions/upload-artifact@v3
+        with:
+         name: ExportedArmTemplate # (4) use the same artifact name you used in the previous export step
+         path: ${{github.workspace}}/ExportedArmTemplate
+         
