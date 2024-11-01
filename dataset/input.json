@@ -8,6 +8,7 @@
 		"annotations": [],
 		"type": "Excel",
 		"typeProperties": {
+			"sheetName": "Application Info",
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": "AKS Cluster Info HRT.xlsx",
