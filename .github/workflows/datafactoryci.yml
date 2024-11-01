@@ -112,6 +112,6 @@ jobs:
         with:
           resourceGroupName: ${{vars.RESOURCE_GROUP}}
           dataFactoryName: ${{vars.DATA_FACTORY}}
-          armTemplateFile: ARMTemplateForFactory.json
-          armTemplateParametersFile: ARMTemplateParametersForFactory.json
+          armTemplateFile: ExportedArmTemplate/ARMTemplateForFactory.json
+          armTemplateParametersFile: ExportedArmTemplate/ARMTemplateParametersForFactory.json
 
