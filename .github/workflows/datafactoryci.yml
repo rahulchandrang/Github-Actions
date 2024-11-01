@@ -1,10 +1,9 @@
 name: DEV/UAT ADF Deployment
 
 on:
+  push:
+    branches: develop
   workflow_dispatch:
-  # push:
-  #   branches: develop
-  
 
     inputs:
       branch:
@@ -115,4 +114,36 @@ jobs:
           dataFactoryName: ${{vars.DATA_FACTORY}}
           armTemplateFile: ExportedArmTemplate/ARMTemplateForFactory.json
           armTemplateParametersFile: ExportedArmTemplate/ARMTemplateParametersForFactory.json
+          deploymentMode: Incremental
 
+  Deploy-ADF-UAT:
+    name: Deploy ADF to UAT
+    runs-on: ubuntu-latest
+    needs: Build-ARM
+    # if: ${{ github.event.inputs.environment == 'dev' }}
+    environment: uat
+    steps:
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v3
+
+
+      - name : List ARM Template
+        run: |
+         ls -R
+      
+      - name: Az CLI Login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          enable-AzPSSession: true 
+
+      - name: Deploy ADF Resources
+        uses: Azure/data-factory-deploy-action@v1.2.0
+        with:
+          resourceGroupName: ${{vars.RESOURCE_GROUP}}
+          dataFactoryName: ${{vars.DATA_FACTORY}}
+          armTemplateFile: ExportedArmTemplate/ARMTemplateForFactory.json
+          armTemplateParametersFile: ExportedArmTemplate/ARMTemplateParametersForFactory.json
+          overrideParameters:
+            datafactoryName = ${{vars.DATA_FACTORY}}
+          deploymentMode: Incremental
