@@ -1,6 +1,8 @@
 name: DEV/UAT ADF Deployment
 
 on:
+  push:
+    branches: develop
   workflow_dispatch:
 
     inputs:
