@@ -15,8 +15,8 @@ on:
         default: 'dev'  
         type: choice
         options:
-          -dev
-          -uat
+          - dev
+          - uat
 
 env:
   branch: ${{github.event.inputs.branch || 'develop'}}
