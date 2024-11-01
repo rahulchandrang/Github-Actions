@@ -95,8 +95,7 @@ jobs:
     steps:
       - name: Download a Build Artifact
         uses: actions/download-artifact@v3
-        with:
-          name: ExportedArmTemplate
+
 
       - name : List ARM Template
         run: |
