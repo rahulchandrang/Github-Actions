@@ -1,0 +1,19 @@
+{
+	"name": "input",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "AKS Cluster Info HRT.xlsx",
+				"container": "input"
+			}
+		},
+		"schema": []
+	}
+}
