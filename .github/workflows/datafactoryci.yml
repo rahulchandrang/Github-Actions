@@ -90,7 +90,7 @@ jobs:
     name: Deploy ADF to DEV
     runs-on: ubuntu-latest
     needs: Build-ARM
-    if: ${{ github.event.inputs.environment == 'dev' }}
+    #if: ${{ github.event.inputs.environment == 'dev' }}
     environment: dev
     steps:
       - name: Download a Build Artifact
@@ -145,5 +145,5 @@ jobs:
           armTemplateFile: ExportedArmTemplate/ARMTemplateForFactory.json
           armTemplateParametersFile: ExportedArmTemplate/ARMTemplateParametersForFactory.json
           overrideParameters:
-            datafactoryName = ${{vars.DATA_FACTORY}}
+            dataFactoryName = ${{vars.DATA_FACTORY}}
           deploymentMode: Incremental
